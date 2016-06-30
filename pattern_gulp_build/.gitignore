@@ -1,0 +1,5 @@
+*~
+*#
+node_modules/
+production/css
+production/img
