@@ -1,0 +1,73 @@
+{
+  "_args": [
+    [
+      "components-font-awesome",
+      "D:\\Projects\\shopia"
+    ]
+  ],
+  "_from": "components-font-awesome@latest",
+  "_id": "components-font-awesome@4.3.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/components-font-awesome",
+  "_nodeVersion": "4.2.4",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/components-font-awesome-4.3.0.tgz_1459773863155_0.2106185955926776"
+  },
+  "_npmUser": {
+    "email": "tomasz.ducin@gmail.com",
+    "name": "ducin"
+  },
+  "_npmVersion": "2.14.12",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "components-font-awesome",
+    "raw": "components-font-awesome",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/components-font-awesome/-/components-font-awesome-4.3.0.tgz",
+  "_shasum": "1ea116118a7082b27b9356972e2e9762f834cf89",
+  "_shrinkwrap": null,
+  "_spec": "components-font-awesome",
+  "_where": "D:\\Projects\\shopia",
+  "bugs": {
+    "url": "https://github.com/components/font-awesome/issues"
+  },
+  "dependencies": {},
+  "description": "Font Awesome, the iconic font designed for use with Twitter Bootstrap.",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "1ea116118a7082b27b9356972e2e9762f834cf89",
+    "tarball": "https://registry.npmjs.org/components-font-awesome/-/components-font-awesome-4.3.0.tgz"
+  },
+  "gitHead": "73acf4d65eadd8d127bafc7bd510240ea3979e83",
+  "homepage": "https://github.com/components/font-awesome#readme",
+  "license": [
+    "MIT",
+    "OFL-1.1"
+  ],
+  "main": "css/font-awesome.css",
+  "maintainers": [
+    {
+      "email": "tomasz.ducin@gmail.com",
+      "name": "ducin"
+    }
+  ],
+  "name": "components-font-awesome",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/components/font-awesome.git"
+  },
+  "scripts": {},
+  "version": "4.3.0"
+}

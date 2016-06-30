@@ -1,0 +1,348 @@
+// media queries 
+
+@mixin media ($device) {
+	$bp_min: 320px; 
+	$bp_small: 768px;	
+    $bp_medium: 990px;
+	$bg_large: 1200px;
+
+	@if $device==mobile {
+		@media only screen and (max-width: $bp_small - 1px) {@content;}  
+	} @else if $device==tablet {
+		@media only screen and (min-width: $bp_small) and (max-width: $bg_large - 1px) {@content;}  
+	} @else if $device==miniTablet {
+    @media only screen and (min-width: $bp_small) and (max-width: $bp_medium - 1px) {@content;}  
+    } @else if $device==desktop {
+		@media only screen and (min-width: $bg_large) {@content;}  
+	} @else if $device==moreThanMobile {
+		@media only screen and (min-width: $bp_small) {@content;}  
+	} @else if $device==lessThanDesktop {
+		@media only screen and (max-width: $bg_large) {@content;}  
+	}
+}     
+
+// font awesome 
+
+@mixin fa ($unicode:auto,$pseudo:before,$font_size:inherit,$color:inherit,$margin_right:auto,$margin_left:auto) {
+	&:#{$pseudo} {
+		font-family: 'FontAwesome';
+		content: $unicode; 
+		margin-right: $margin_right;
+		margin-left: $margin_left;
+		font-size: $font_size;
+		color: $color;
+	}
+}
+
+@mixin fa_absolute ($unicode:auto,$pseudo:before,$font_size:inherit,$color:inherit,$top:auto,$right:auto,$bottom:auto,$left:auto,$font_weight:normal) {
+	&:#{$pseudo} {
+		position: absolute;
+		top: $top;
+		right: $right;
+		bottom: $bottom;
+		left: $left;
+		font-family: 'FontAwesome'; 
+		content: $unicode;	
+		font-weight: $font_weight;	
+		font-size: $font_size;
+		color: $color; 
+
+        @if ($left==50%) and ($top==50%) {
+            transform: translate(-50%,-50%); 
+        }
+        @if ($top==50%) and not ($left==50%) { 
+            transform: translateY(-50%); 
+        }
+        @if ($left==50%) and not ($top==50%) { 
+            transform: translateX(-50%);  
+        } 
+	}
+}
+/* usage
+	.item {
+		@include fa_absolute ($fa-var-facebook,before,16px,#fff,50%);
+	}
+*/
+
+
+@mixin am_font_absolute ($unicode:auto,$pseudo:before,$font_size:inherit,$color:inherit,$top:auto,$right:auto,$bottom:auto,$left:auto,$rotate:auto) {
+  &:#{$pseudo} {
+    position: absolute;
+    top: $top;
+    left: $left;
+    bottom: $bottom;
+    right: $right;     
+    font-family: 'am_font'; 
+    content: $unicode;  
+    font-size: $font_size;
+    color: $color;   
+
+    @if ($left==50%) and ($top==50%) {
+        transform: translate(-50%,-50%); 
+    }
+    @if ($top==50%) and not ($left==50%) { 
+        transform: translateY(-50%); 
+    }
+    @if ($left==50%) and not ($top==50%) { 
+        transform: translateX(-50%);  
+    } 
+    @if $rotate==180 {
+        transform: translate(-50%,-50%) rotate(-180deg);       
+    }  
+  } 
+} 
+/* usage
+  .item {
+    @include am_font_absolute ($fa-var-bars);
+  }
+*/
+
+
+@mixin sprite_absolute ($sprite_name: auto, $pseudo:before, $top:auto, $right:auto, $bottom:auto, $left:auto,$margin: auto) {
+    &:#{$pseudo} {
+  		content: '';
+  		position: absolute;
+        top: $top;  
+  		bottom: $bottom;
+  		right: $right;
+        left: $left;				
+  		margin: $margin; 
+
+        @if ($left==50%) and ($top==50%) {
+            transform: translate(-50%,-50%); 
+        }
+        @if ($top==50%) and not ($left==50%) { 
+            transform: translateY(-50%); 
+        }
+        @if ($left==50%) and not ($top==50%) { 
+            transform: translateX(-50%);  
+        }       
+
+  		@include sprite($sprite_name); 
+	} 
+}  
+  
+/* usage
+  .item {
+    @include sprite_absolute ($arrow, before, 0,auto,auto,0);
+  }
+*/
+
+// Custom Scrollbars
+
+@mixin custom-scrollbar($bg-color: silver, $thumb-color: gray) {
+	@include chrome-scrollbar($bg-color, $thumb-color);
+	@include ie-scrollbar($bg-color, $thumb-color);
+}
+
+@mixin chrome-scrollbar($bg-color: silver, $thumb-color: gray) {
+    &::-webkit-scrollbar {
+        width:  9px;
+        //height: .5em;
+        //padding: 20px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $thumb-color;
+        border-radius: 10px;
+        margin: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $bg-color;
+    }
+}
+
+@mixin ie-scrollbar($bg-color: white, $thumb-color: gray) {
+  @if $bg-color == transparent { $bg-color: white; } //fix - seems ie doesnt support transparent
+    scrollbar-base-color: $thumb-color;
+    scrollbar-face-color: $thumb-color;
+    scrollbar-3dlight-color: $bg-color;
+    scrollbar-arrow-color: $bg-color;
+    scrollbar-highlight-color: $bg-color;
+    scrollbar-shadow-color: $bg-color;
+    scrollbar-dark-shadow-color: $bg-color;
+    scrollbar-track-color: $bg-color;
+} 
+
+// Custom Placeholder
+//usage @include customPlaceholder($black, 12px);
+@mixin customPlaceholder ($color: $blue-light2, $font-size: 14px) {
+    &::-webkit-input-placeholder {
+       color: $color;
+       font-size: $font-size;
+    }
+
+    &::-moz-placeholder {  /* Firefox 19+ */
+       color: $color;
+       font-size: $font-size;
+    }
+
+    &:-moz-placeholder { /* Firefox 18- */
+       color: $color;
+       font-size: $font-size;
+    }
+
+    &:-ms-input-placeholder {
+       color: $color;
+       font-size: $font-size;
+    }
+}
+
+@mixin customFocusPlaceholder($color: transparent) {
+    &:focus::-webkit-input-placeholder {
+       color: $color;
+    }
+
+    &:focus::-moz-placeholder {  /* Firefox 19+ */
+       color: $color;
+    }
+
+    &:focus:-moz-placeholder { /* Firefox 18- */
+       color: $color;
+    }
+
+    &:focus:-ms-input-placeholder {
+       color: $color;
+    }
+}
+
+@mixin position($type: relative, $top: auto, $left: auto, $bottom: auto, $right: auto){
+    position: $type;
+    top: $top;
+    left: $left;
+    bottom: $bottom;
+    right: $right;
+}
+
+
+// usage: border-arrow(down, $white, 10px, 10px);
+@mixin border_arrow($direction, $color, $width: 0, $height: 0) {
+	border: $width solid transparent;
+
+	@if $direction == down {
+		border-top-color: $color;
+		border-bottom: 0;
+		@if $height>0 {
+			border-top-width: $height;
+		}
+	}
+
+	@if $direction == left {
+		border-right-color: $color;
+		border-left: 0;
+		@if $height>0 {
+			border-right-width: $width;
+		}
+	}
+
+	@if $direction == right {
+		border-left-color: $color;
+		border-right: 0;
+		@if $height>0 {
+			border-left-width: $width;
+		}
+	}
+}
+
+
+@mixin clear-filter {
+    font-weight: normal;
+    font-size: 12px;
+    padding: 0 0 0 1.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    @include sprite_absolute ($close, before, 50%, 0,0,0, -5px 0 0 0);
+}
+
+
+@mixin site_width { 
+  max-width: 1120px;  
+  margin: 0 auto;
+
+  @include media(mobile) {
+    width: 87.5%;
+  }
+  @include media(tablet) {
+    width: 95%;
+  }
+  @media screen and (max-width: 318px) {
+    width: 100%;
+  }
+}
+
+// EXTENDS
+
+%clearfix, .clearfix { 
+	&:after {
+		content: ""; 
+		display: table;
+		clear: both;
+	}
+}
+
+
+
+// CUSTOM MIXINS
+
+
+@mixin btn_style ($btn_bg,$border_color,$btn_hover_bg) {
+    position: relative;
+    display: inline-block;
+    border: 1px solid $border_color;
+    overflow: hidden;
+    width: 270px;
+    height: 60px;
+    line-height: 60px;
+    font-family: 'Lato'; 
+    text-align: center;
+    text-transform: uppercase;    
+    font-size: $medium_font_size;
+    transition: .3s;     
+    
+    .btn_primary_inner {
+        transition: .3s;
+ 
+        &:first-child {
+            position: absolute;
+            left: 0;
+            top: -100%;
+            height: 100%;
+            width: 100%;
+            color: $btn_bg;       
+            background: $btn_hover_bg;             
+        }
+ 
+        &:last-child {
+            display: block;
+            width: 100%;
+            height: 100%; 
+            position: relative;
+            color: $btn_hover_bg;
+            background: $btn_bg;            
+        } 
+    }       
+
+    @include media(moreThanMobile) {
+        &:hover {
+            .btn_primary_inner:first-child {
+                top: 0!important;
+            }    
+            .btn_primary_inner:last-child {
+                transform: translateY(300%);
+            }      
+        } 
+    }
+    
+    .btn_primary_text {
+      position: relative; 
+    }
+
+    @include media(mobile) {
+        width: 100%;
+    }        
+}
+/* usage
+    @include btn_style(red,#fff,#fff,red);
+*/ 

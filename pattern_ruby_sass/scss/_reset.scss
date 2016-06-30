@@ -1,0 +1,33 @@
+body,ul,li,h1,h2,h3,h4,h5,h6,p,textarea{
+	margin:0;
+	padding:0;	
+}
+li{
+	list-style:none;
+}
+a{	
+	text-decoration:none;
+}
+input, textarea{
+	border:0;
+	outline:none;
+}
+textarea{
+	resize:none;
+	overflow:hidden;
+}
+/* for IE */
+a img {
+    border:none;
+}
+button {
+	outline: none;
+	border: 0;
+	cursor: pointer;
+	background: 0;
+	padding: 0;
+}
+
+.slick-slide {
+	outline: 0;
+}
